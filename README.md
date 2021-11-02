@@ -1,4 +1,4 @@
-# coursework_3
+# vue-vuex-composition
 
 ## Project setup
 ```

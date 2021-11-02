@@ -1,7 +1,7 @@
 <template>
 	<nav class="navbar">
 		<h3>
-			{{ $store.state.title }}
+			Freelance
 		</h3>
 
 		<ul class="navbar-menu">

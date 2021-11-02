@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import {computed} from 'vue'
 import {useStore} from 'vuex'
 import {useRoute} from 'vue-router'
 import axios from 'axios'
@@ -26,10 +27,10 @@ export default {
 		const store = useStore()
 		const route = useRoute()
 
-		const tasks = store.getters.tasks
+		const tasks = computed(() => store.getters.tasks)
 		const taskId = route.params.taskId
 
-		const task = tasks.find(t => t.id === +taskId)
+		const task = tasks.value.find(t => t.id === +taskId)
 
 		const changeStatus = async status => {
 			store.commit('changeStatus', {
@@ -37,7 +38,11 @@ export default {
 				type: status
 			})
 
-			await axios.patch(process.env.VUE_APP_DB_URL + task.dbId + '.json', { status })
+			try {
+				await axios.patch(process.env.VUE_APP_DB_URL + task.dbId + '.json', { status })
+			} catch (e) {
+				console.warn(e.message)
+			}
 		}
 
 		return {

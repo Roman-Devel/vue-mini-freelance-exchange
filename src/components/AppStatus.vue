@@ -17,29 +17,28 @@ export default {
 	},
 	setup(props) {
 		const taskInfo = computed(() => {
-			if (props.type === 'active') 	{
-				return {
-					type: 'primary',
-					title: 'Активен'
-				}
-			}
-			if (props.type === 'done') 		{
-				return {
-					type: 'primary',
-					title: 'Завершен'
-				}
-			}
-			if (props.type === 'cancelled') {
-				return {
-					type: 'danger',
-					title: 'Отменен'
-				}
-			}
-			if (props.type === 'pending') 	{
-				return {
-					type: 'warning',
-					title: 'Выполняется'
-				}
+
+			switch (props.type) {
+				case 'active':
+					return {
+						type: 'primary',
+						title: 'Активен'
+					}
+				case 'done':
+					return {
+						type: 'primary',
+						title: 'Завершен'
+					}
+				case 'cancelled':
+					return {
+						type: 'danger',
+						title: 'Отменен'
+					}
+				case 'pending':
+					return {
+						type: 'warning',
+						title: 'Выполняется'
+					}
 			}
 		})
 

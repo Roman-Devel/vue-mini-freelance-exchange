@@ -4,7 +4,6 @@ export default createStore({
 	plugins: [createLogger()],
 	state() {
 		return {
-			title: 'Freelance',
 			tasks: []
 		}
 	},

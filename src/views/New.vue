@@ -56,7 +56,11 @@ export default {
 					status: currentStatus()
 				})
 
-				await axios.patch(process.env.VUE_APP_DB_URL + data.name + '.json', { dbId: data.name })
+				try {
+					await axios.patch(process.env.VUE_APP_DB_URL + data.name + '.json', { dbId: data.name })
+				} catch (e) {
+					console.warn(e.message)
+				}
 
 				title.value = ''
 				deadline.value = ''
